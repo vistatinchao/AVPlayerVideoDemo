@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class PlayVideoView;
 NS_ASSUME_NONNULL_BEGIN
+
+@protocol PlayVideoViewDelegate <NSObject>
+
+@optional;
+- (void)playVideoViewShowFullScreen:(PlayVideoView *)playVideoView;
+- (void)playVideoViewExitFullScreen:(PlayVideoView *)playVideoView;
+@end
 
 @interface PlayVideoView : UIView
 
@@ -17,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)playVideoViewWithUrl:(NSString *)url;
 
+/**delegate*/
+@property (nonatomic,weak) id<PlayVideoViewDelegate> delegate;
 
 @end
 

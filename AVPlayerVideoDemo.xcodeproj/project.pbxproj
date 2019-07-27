@@ -24,7 +24,7 @@
 		7A73B09D22E54BD600CDD060 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A73B09B22E54BD600CDD060 /* LaunchScreen.storyboard */; };
 		7A73B0A022E54BD600CDD060 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A73B09F22E54BD600CDD060 /* main.m */; };
 		7A73B0A922E5661C00CDD060 /* PlayVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A73B0A822E5661C00CDD060 /* PlayVideoView.m */; };
-		7A73B0AB22E5663700CDD060 /* PlayVideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A73B0AA22E5663700CDD060 /* PlayVideoView.xib */; };
+		7ADF842C22EC6EE7002DADA7 /* FullViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADF842B22EC6EE7002DADA7 /* FullViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,7 +65,8 @@
 		7A73B09F22E54BD600CDD060 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7A73B0A722E5661C00CDD060 /* PlayVideoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayVideoView.h; sourceTree = "<group>"; };
 		7A73B0A822E5661C00CDD060 /* PlayVideoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayVideoView.m; sourceTree = "<group>"; };
-		7A73B0AA22E5663700CDD060 /* PlayVideoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayVideoView.xib; sourceTree = "<group>"; };
+		7ADF842A22EC6EE7002DADA7 /* FullViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullViewController.h; sourceTree = "<group>"; };
+		7ADF842B22EC6EE7002DADA7 /* FullViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +159,8 @@
 			children = (
 				7A73B0A722E5661C00CDD060 /* PlayVideoView.h */,
 				7A73B0A822E5661C00CDD060 /* PlayVideoView.m */,
-				7A73B0AA22E5663700CDD060 /* PlayVideoView.xib */,
+				7ADF842A22EC6EE7002DADA7 /* FullViewController.h */,
+				7ADF842B22EC6EE7002DADA7 /* FullViewController.m */,
 			);
 			path = PlayViedo;
 			sourceTree = "<group>";
@@ -222,7 +224,6 @@
 			files = (
 				7A73B09D22E54BD600CDD060 /* LaunchScreen.storyboard in Resources */,
 				7A73B09A22E54BD600CDD060 /* Assets.xcassets in Resources */,
-				7A73B0AB22E5663700CDD060 /* PlayVideoView.xib in Resources */,
 				7A73B09822E54BD500CDD060 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,6 +239,7 @@
 				7A231F0922E9FA4C00C6FE24 /* MASViewAttribute.m in Sources */,
 				7A73B09522E54BD500CDD060 /* ViewController.m in Sources */,
 				7A73B0A022E54BD600CDD060 /* main.m in Sources */,
+				7ADF842C22EC6EE7002DADA7 /* FullViewController.m in Sources */,
 				7A231F0522E9FA4C00C6FE24 /* NSArray+MASAdditions.m in Sources */,
 				7A231F0122E9FA4C00C6FE24 /* ViewController+MASAdditions.m in Sources */,
 				7A231F0222E9FA4C00C6FE24 /* MASCompositeConstraint.m in Sources */,
