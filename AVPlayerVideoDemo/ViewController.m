@@ -24,12 +24,16 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    PlayVideoView *videoView = [PlayVideoView playVideoViewWithUrl:@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"];
+    /**
+     https://oss-test.hezhiiot.com/hezhi/dc2b2916-9a60-4b7b-bb40-03e7d4371a9e.mp4
+     http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4
+     */
+    [super viewDidLoad];//
+    PlayVideoView *videoView = [[PlayVideoView alloc]init];
     [self.view addSubview:videoView];
     CGFloat videoViewW = self.view.bounds.size.width;
     videoView.frame = CGRectMake(0, 0, videoViewW, videoViewW*9/16);
-    videoView.url = @"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
+    videoView.url = @"https://oss-test.hezhiiot.com/hezhi/dc2b2916-9a60-4b7b-bb40-03e7d4371a9e.mp4";
     videoView.delegate = self;
     self.playView = videoView;
     // Do any additional setup after loading the view.

@@ -32,6 +32,8 @@
 /**全屏按钮*/
 @property (nonatomic,weak) UIButton *fullBtn;
 
+/**小菊花*/
+@property (nonatomic,weak) UIActivityIndicatorView *indicatorView;
 /**定时器*/
 @property (nonatomic,strong) NSTimer *timer;
 
@@ -57,17 +59,20 @@
     return self;
 }
 
+
+
 #pragma mark - 监听播放状态的改变
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
    
     if ([keyPath isEqualToString:@"status"]) {
-        NSLog(@"dict:%@ status:%zd",change,self.playItem.status);
+        NSLog(@"dict:%@ status:%zd",change,self.player.status);
     }
 }
 /**
  播放完成
  */
 - (void)moviePlayDidEnd:(NSNotification *)noti {
+    [self.player pause];
     self.playBtn.selected = NO;
     [self stopTimer];
     self.sliderView.value = 0.0;
@@ -92,12 +97,18 @@
 
 
 - (void)updateProgressInfo {
-    // 总时长
-    NSTimeInterval totalTime  = CMTimeGetSeconds(self.player.currentItem.duration);
-    NSTimeInterval currentTime = CMTimeGetSeconds(self.player.currentTime);
+    if (self.player.status == AVPlayerStatusReadyToPlay) {
+        [self.indicatorView stopAnimating];
+        // 总时长
+        NSTimeInterval totalTime  = CMTimeGetSeconds(self.player.currentItem.duration);
+        NSTimeInterval currentTime = CMTimeGetSeconds(self.player.currentTime);
+        
+        [self setPlayTimeWithTotalTime:totalTime currentTime:currentTime];
+        self.sliderView.value = currentTime/totalTime;
+    }else{
+        [self.indicatorView startAnimating];
+    }
     
-    [self setPlayTimeWithTotalTime:totalTime currentTime:currentTime];
-    self.sliderView.value = currentTime/totalTime;
    
 }
 
@@ -163,6 +174,11 @@
     [fullBtn addTarget:self action:@selector(fullBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     self.fullBtn = fullBtn;
     
+    //转子
+     UIActivityIndicatorView *indicatorView =  [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [self addSubview:indicatorView];
+    self.indicatorView = indicatorView;
+    
 }
 
 #pragma mark - 设置播放player
@@ -172,8 +188,6 @@
     [self.coverImg.layer addSublayer:playLayer];
     self.playLayer = playLayer;
     self.player = player;
-    // 开始播放
-//    [self.player play];
 }
 
 - (void)setUrl:(NSString *)url {
@@ -199,11 +213,13 @@
     playBtn.selected = !playBtn.selected;
     if (playBtn.selected) {
          [self.player play];
+        [self.indicatorView startAnimating];
         [self timer];
         
     }else{
         [self.player pause];
         [self stopTimer];
+        [self.indicatorView stopAnimating];
     }
    
 }
@@ -235,6 +251,7 @@
     
     self.playLayer.frame = self.bounds;
     self.coverImg.frame = self.bounds;
+    self.indicatorView.center = self.center;
     [self.bottomView makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self);
         make.height.equalTo(@(50));
@@ -263,5 +280,9 @@
         make.centerY.mas_equalTo(0);
         make.height.mas_equalTo(30);
     }];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end
